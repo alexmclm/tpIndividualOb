@@ -1,0 +1,101 @@
+import main.personajes.*
+describe "la Doctora" {
+	fixture {
+		laDoctora.lucharManoAMano(guerrera)
+	}
+	
+	test "la doctora cuando lucha 'guerera' contra Alguien su nivel de energia aumenta a 6400" {
+
+	assert.equals(6400,laDoctora.energiaInicial())
+
+	}
+	test "la doctora no tiene 5 elementos en su botiquin, tiene 4" {
+		assert.equals(4, laDoctora.cantidadElementosBotiquin())
+
+	}
+	test "grito de victoria alaba a wallace, el grandioso"{
+		assert.equals("ha llevado wallace, digo pamela",laDoctora.gritoVictoria())
+	}
+}
+describe "musico terapetua "{
+	fixture {
+		musicoterapeuta.lucharManoAMano(laDoctora)
+	}
+	test "el musicoTerapeuta cuando lucha contra Alguien su nivel de energia aumenta a 6100" {
+
+	assert.equals(6100,musicoterapeuta.energiaInicial())
+
+	}
+	test "el musico no tiene 5 elementos en su botiquin, tiene 3" {
+		assert.equals(3, musicoterapeuta.cantidadElementosBotiquin())
+
+	}
+	test "grito de victoria del musico es referencia a vegeta"{
+		assert.equals("siente mi poder, maldito insecto",musicoterapeuta.gritoVictoria())
+	}
+	
+}
+describe "guerera luchando contra la doctora"{
+	fixture{
+		guerrera.lucharManoAMano(laDoctora)
+	}
+	test "la guerrera cuando lucha contra la doctora su nivel de energia aumenta a 11400" {
+
+	assert.equals(3000,laDoctora.energiaInicial())
+
+	}
+}
+
+describe "guerrera luchando contra el musicoterapeuta "{
+	fixture {
+		guerrera.lucharManoAMano(musicoterapeuta)
+	}
+	test "la guerrera cuando lucha contra el musicoTerapeuta, el nivel de energia de musico baja a 2900" {
+
+	assert.equals(2800,musicoterapeuta.energiaInicial())
+
+	}
+}
+describe "guerrera luchando contra el tanque"{
+	fixture {
+		guerrera.lucharManoAMano(tanque)
+	}		
+	test "la guerrera cuando lucha contra el tanque, el nivel de energia del tanque baja a 3900" {
+
+	assert.equals(3900,tanque.energiaInicial())
+
+	}			
+	test "la guerrera no tiene 5 elementos en su botiquin, tiene 4" {
+		assert.equals(4, guerrera.cantidadElementosBotiquin())
+
+	}
+	test "grito de victoria de la guerrera es 'hora de volver a tus plantas'"{
+		assert.equals("hora de volver a tus plantas",guerrera.gritoVictoria())
+	}
+}
+describe "tanque luchando contra la doctora"{
+	fixture{
+		tanque.lucharManoAMano(laDoctora)
+	}
+	test "luego de luchar contra la doctora , el botiquin del tanque aumenta en 1 "{
+		assert.equals(1,tanque.botiquin().size())
+	}
+}
+describe "tanque luchando contra el musicoterapeuta"{
+	fixture{
+		tanque.lucharManoAMano(musicoterapeuta)
+	}
+	test "la energia  luego de luchar contra el musicoterapeuta es 7800"{
+		assert.equals(7800,tanque.energiaInicial())
+	}
+}
+describe "tanque luchando contra la guerrera y la doctora"{
+	fixture{
+		tanque.lucharManoAMano(laDoctora)
+		tanque.lucharManoAMano(guerrera)
+	}	
+	test "el botiquin del tanque aumenta en 2 "{
+		assert.equals(2,tanque.botiquin().size())
+	}
+}
+

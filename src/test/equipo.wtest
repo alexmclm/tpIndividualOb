@@ -1,0 +1,23 @@
+import main.personajes.*
+import main.equipo.*
+
+describe "armado de equipos"{
+	fixture{
+		equipo1.agregarIntegrantes(#{laDoctora,musicoterapeuta})
+		equipo2.agregarIntegrantes(#{guerrera,tanque})
+	}
+	test "los personajes agregados en equipo 1 son la doctora y musicoterapeuta"{
+		assert.equals(#{laDoctora,musicoterapeuta}, equipo1.integrantes())
+	}
+	test "los personajes agregados en equipo 2 son la guerrera y tanque"{
+		assert.equals(#{guerrera,tanque}, equipo2.integrantes())
+	}	
+	test"la energia total del equipo1 es "{
+		assert.equals(11600, equipo1.energiaTotal())
+	}
+	test"la energia total del equipo2 es "{
+		assert.equals(16200, equipo2.energiaTotal())
+	}
+	
+	
+}

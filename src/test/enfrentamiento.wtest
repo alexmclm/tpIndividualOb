@@ -1,0 +1,19 @@
+import main.enfrentamientos.*
+import main.equipo.*
+import main.personajes.*
+describe "agregar equipos para enfrentarlos" {
+	fixture{
+		enfrentamiento.agregarEquipoEnfrentados(equipo1)
+		enfrentamiento.agregarEquipoEnfrentados(equipo2)
+	}
+	test "agrego 2 equipos al la lista de enfrentamientos semanal"{
+		assert.equals(2,enfrentamiento.equiposEnfrentados().size())
+	}
+	test "luego de un enfrentamiento, el equipo ganador es el 2"{
+		enfrentamiento.batalla()
+		assert.equals(equipo2,enfrentamiento.equipoGanador())
+	}
+	test "aun si no hay batalla, el ganador seria equipo2"{
+		assert.equals(equipo2,enfrentamiento.equipoGanador())
+	}
+}
